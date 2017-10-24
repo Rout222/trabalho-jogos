@@ -4,8 +4,8 @@ public class EnemyMoviment : MonoBehaviour {
 
 	public float speed = 5f;
 
-	private Transform corner;
-	private int index = 0;
+	public Transform corner;
+	public int index = 0;
 
 	void Start(){
 		corner = Waypoints.points[0];

@@ -41,6 +41,33 @@ public class Tower : MonoBehaviour {
 			target = null;
 		}
 	}
+// Waypoints.points[GetComponent<EnemyMoviment>().index].transform.position
+	void FirstTarget(){
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag (enemyTag);
+		int enemyIndex = 0;
+		int aux = 0;
+		float firstEnemyDistance = Mathf.Infinity;
+		float distanceToWaypoint, distanceToTower;
+		GameObject firstEnemy = null;
+		foreach (GameObject enemy in enemies) {
+			aux = enemy.GetComponent<EnemyMoviment>().index;
+			if(aux >= enemyIndex){
+				distanceToWaypoint = Vector3.Distance (enemy.GetComponent<EnemyMoviment>().corner.position, Waypoints.points[aux].position);
+				distanceToTower = Vector3.Distance (transform.position, enemy.transform.position);
+				if (firstEnemyDistance > distanceToWaypoint && distanceToTower <= range) {
+					enemyIndex = aux;
+					firstEnemy = enemy;
+					firstEnemyDistance = distanceToWaypoint;
+				}
+			}
+		}
+		if (firstEnemy != null && firstEnemyDistance <= range) {
+			target = firstEnemy.transform;
+		} else {
+			target = null;
+		}
+		
+	}
 
 	// Update is called once per frame
 	void Update () {
