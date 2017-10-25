@@ -39,7 +39,7 @@ public class MapGeneration : MonoBehaviour {
 	int originc;
 	int destinyr;
 	int destinyc;
-
+	int size;
 	// Use this for initialization
 	void Start () {
 		GameObject[] mapList = { node, startingPoint, path, endingPoint };
@@ -54,7 +54,8 @@ public class MapGeneration : MonoBehaviour {
 				createGO (i, j, height, mapList[map[i,j]-1], parentList[map[i,j]-1]	);
 			}	
 		}
-		MatrizAdjacencia(15);
+		size = 15;
+		MatrizAdjacencia();
 		Debug.Log(originc);
 		Debug.Log(originr);
 		Debug.Log(destinyc);
@@ -67,7 +68,7 @@ public class MapGeneration : MonoBehaviour {
 		GO.transform.SetParent (parent);
 	}
 
-	void MatrizAdjacencia(int size){
+	void MatrizAdjacencia(){
 		MA = new int[size*size, size*size];
 		for(int i = 0; i < size*size; i++){
 			for(int j = 0; j < size*size; j++){
@@ -108,8 +109,23 @@ public class MapGeneration : MonoBehaviour {
 		}
 	}
 
-	void Dijkstra(){
-
+	void Prim(){
+		bool offset = false;
+		int aux = originr*size+originc;
+		int[] l1 = {aux};
+		quantVertices = size*size;
+		int[] l2 = new int[size*size - 1];
+		for (int i = 0; i < l2.Length; i++){
+			if (i  == aux){
+				offset = true;
+			} else {
+				if (offset){
+					l2[i] = i + 1;
+				} else {
+					l2[i] = i;
+				}
+			}
+		}
 	}
 
 	void Relax(){
