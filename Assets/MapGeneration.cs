@@ -37,10 +37,23 @@ public class MapGeneration : MonoBehaviour {
 	List<int> caminho;
 
 
-	int [,] map = {
-		{1,1,1},
-		{1,1,1},
-		{1,1,1},
+	int[,] map = {
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+
 	};
 	// Use this for initialization
 	void Start () {
@@ -55,12 +68,12 @@ public class MapGeneration : MonoBehaviour {
 			}
 			origem = (int) (originc * Mathf.Sqrt(map.Length) + originr);
 			destino = (int)  (destinyc * Mathf.Sqrt (map.Length) + destinyr);
-			caminho = findPath();
-			for (int i = 0; i < caminho.Count; i++) {
+			//caminho = findPath();
+/*			for (int i = 0; i < caminho.Count; i++) {
 				Debug.Log(caminho[i] + " = " + (int) ((caminho[i] % 3)));
 				GameObject GO = Instantiate (waypointprefab, new Vector3(4*((int) ((caminho[i] - ((caminho[i] % 3) - 1))/3) + padding),4f, 4*(caminho[i] % 3)), Quaternion.identity) as GameObject;
 				GO.transform.SetParent (way.transform);
-			}
+			}*/
 		}
 		GameObject[] mapList = { node, startingPoint, path, endingPoint };
 		Transform[] parentList = { nodes.transform, transform.parent, paths.transform, transform.parent};

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour {
-
 	[Header("Missle tower stats")]
 	public float range = 15f;
 
 	public float rotationSpeed = 3f;
 	public float fireRate = 3f;
 	private float fireTimer = 0f;
+	private Renderer rend;
 	[Header("Unity files")]
 	public string enemyTag = "Enemies";
 
@@ -18,11 +18,39 @@ public class Tower : MonoBehaviour {
 	public GameObject projectile;
 	public Transform firePoint;
 
+	public Vector3 onhover;
+	private Vector3 normal;
+
+	bool aimType = false;
+
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("ClosestTarget", 0f, 0.333f);	
+		InvokeRepeating ("ClosestTarget", 0f, 0.333f);
+		rend = GetComponent<Renderer>();
+		normal = transform.localScale;
 	}
+	private void OnMouseEnter()
+	{
+		transform.localScale += onhover;
+	}
+	private void OnMouseExit()
+	{
+		transform.localScale = normal;
+	}
+	private void OnMouseDown(){
+	
+		if (aimType) {
+			CancelInvoke ();
+			Debug.Log ("mirando no mais perto");
+			InvokeRepeating ("ClosestTarget", 0f, 0.333f);
 
+		} else {
+			CancelInvoke ();
+			Debug.Log ("mirando no primeiro");
+			InvokeRepeating ("FirstTarget", 0f, 0.333f);
+		}
+		aimType = !aimType;
+	}
 	void ClosestTarget(){
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag (enemyTag);
 		float closestEnemyDistance = Mathf.Infinity;

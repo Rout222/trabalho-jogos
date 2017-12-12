@@ -107,4 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e787e9c13f6dbad47b40a412f1d9b236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 0}
+  tower: {fileID: 1792170727656488, guid: 23dbe696ad8245344a83f3cf239e527b, type: 2}
+  onhover: {r: 0.6838235, g: 0.19106835, b: 0.19106835, a: 0}

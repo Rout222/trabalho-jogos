@@ -30,7 +30,8 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void hitTarget(){
-		Destroy(Instantiate (impactEffect, transform.position, transform.rotation) as GameObject, 2f);
+		Destroy (Instantiate (impactEffect, transform.position, transform.rotation) as GameObject, 2f);
 		Destroy (gameObject);
+		Destroy (target.gameObject);
 	}
 }
